@@ -16,3 +16,12 @@ uv.lock.tmp
 
 # OS
 .DS_Store
+
+
+
+
+.git
+.gitignore
+.env
+*.log
+.pytest_cache
