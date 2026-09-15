@@ -12,12 +12,23 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
 from src.model import load_model, predict_price
 from src.preprocess import load_keep_locations, prepare_features
 
 app = FastAPI(title="House Price Prediction API")
+
+# Frontend and backend are deployed as separate services (HF Static Space +
+# Render), so this is a genuine cross-origin call - same pattern as the
+# Titanic project's backend.
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 MODEL = load_model()
 KEEP_LOCATIONS = load_keep_locations(
