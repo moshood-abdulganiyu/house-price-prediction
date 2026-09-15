@@ -20,6 +20,9 @@ COPY . .
 # Final sync to include project root
 RUN uv sync --frozen --no-dev
 
+# Diagnostic: confirm uvicorn actually exists in the built image
+RUN ls -la /app/.venv/bin/
+
 EXPOSE 8000
 
 # Use full path to uvicorn inside virtual environment
