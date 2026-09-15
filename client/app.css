@@ -1,0 +1,237 @@
+:root {
+  --ink: #142a45;
+  --stone: #e7eef5;
+  --paper: #fbfcfe;
+  --accent: #2b5a9e;
+  --accent-dark: #1f4374;
+  --slate: #55636f;
+  --white: #ffffff;
+
+  --font-display: "Fraunces", serif;
+  --font-body: "Work Sans", sans-serif;
+
+  --radius: 4px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.5;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  position: relative;
+  min-height: 62vh;
+  display: flex;
+  align-items: flex-end;
+  background-image: url("assets/hero.jpg");
+  background-size: cover;
+  background-position: center;
+  background-color: var(--ink); /* fallback while the photo loads */
+}
+
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(20, 42, 69, 0.92) 0%,
+    rgba(20, 42, 69, 0.55) 45%,
+    rgba(20, 42, 69, 0.1) 80%
+  );
+}
+
+.hero__content {
+  position: relative;
+  max-width: 640px;
+  padding: 48px clamp(20px, 6vw, 72px) 112px;
+  color: var(--paper);
+}
+
+.hero__eyebrow {
+  margin: 0 0 12px;
+  font-size: 0.9rem;
+  color: var(--stone);
+}
+
+.hero__headline {
+  margin: 0 0 16px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  line-height: 1.1;
+}
+
+.hero__sub {
+  margin: 0;
+  max-width: 46ch;
+  font-size: 1.05rem;
+  color: var(--stone);
+}
+
+/* ---------- Panels (form + estimate) ---------- */
+
+.panels {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 6vw, 48px);
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 24px;
+  transform: translateY(-64px);
+}
+
+.card {
+  background: var(--stone);
+  border-radius: var(--radius);
+  box-shadow: 0 12px 32px rgba(20, 42, 69, 0.18);
+  padding: clamp(24px, 4vw, 36px);
+}
+
+.form-card__title {
+  margin: 0 0 20px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.4rem;
+}
+
+.field {
+  display: block;
+  margin-bottom: 18px;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.field__label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+  color: var(--slate);
+}
+
+.field__hint {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.78rem;
+  color: var(--slate);
+}
+
+input {
+  width: 100%;
+  padding: 10px 12px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--ink);
+  background: var(--white);
+  border: 1px solid #c9d6e3;
+  border-radius: var(--radius);
+}
+
+input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 13px 16px;
+  margin-top: 4px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--paper);
+  background: var(--accent);
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.submit-btn:hover {
+  background: var(--accent-dark);
+}
+
+.submit-btn:disabled {
+  background: #8fa9c4;
+  cursor: progress;
+}
+
+/* ---------- Estimate panel ---------- */
+
+.estimate-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 260px;
+}
+
+.estimate-card__empty p,
+.estimate-card__loading p {
+  color: var(--slate);
+  max-width: 30ch;
+}
+
+.estimate-card__label {
+  margin: 0 0 8px;
+  font-size: 0.9rem;
+  color: var(--slate);
+}
+
+.estimate-card__price {
+  margin: 0 0 16px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  color: var(--ink);
+}
+
+.estimate-card__note {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--slate);
+  max-width: 32ch;
+}
+
+.estimate-card__error p {
+  color: var(--accent-dark);
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 24px clamp(20px, 6vw, 48px) 48px;
+  color: var(--slate);
+  font-size: 0.82rem;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 760px) {
+  .panels {
+    grid-template-columns: 1fr;
+    transform: translateY(-40px);
+  }
+
+  .field-row {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    min-height: 50vh;
+  }
+}

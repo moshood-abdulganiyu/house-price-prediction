@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bengaluru House Price Estimator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="app.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__scrim"></div>
+    <div class="hero__content">
+      <p class="hero__eyebrow">Bengaluru housing data</p>
+      <h1 class="hero__headline">What is your home worth?</h1>
+      <p class="hero__sub">
+        An estimate built from over 13,000 recent Bengaluru listings.
+        Enter a few details below.
+      </p>
+    </div>
+  </header>
+
+  <main class="panels">
+    <form class="card form-card" id="predict-form" novalidate>
+      <h2 class="form-card__title">Property details</h2>
+
+      <label class="field">
+        <span class="field__label">Location</span>
+        <input
+          type="text"
+          id="location"
+          name="location"
+          placeholder="e.g. Whitefield"
+          autocomplete="off"
+          required
+        />
+        <span class="field__hint">Areas we don't recognize are grouped as "other".</span>
+      </label>
+
+      <div class="field-row">
+        <label class="field">
+          <span class="field__label">BHK</span>
+          <input type="number" id="bhk" name="bhk" min="1" max="16" step="1" placeholder="2" required />
+        </label>
+        <label class="field">
+          <span class="field__label">Total area (sqft)</span>
+          <input type="number" id="sqft" name="sqft" min="100" step="1" placeholder="1200" required />
+        </label>
+      </div>
+
+      <div class="field-row">
+        <label class="field">
+          <span class="field__label">Bathrooms</span>
+          <input type="number" id="bath" name="bath" min="0" max="16" step="1" placeholder="2" required />
+        </label>
+        <label class="field">
+          <span class="field__label">Balconies</span>
+          <input type="number" id="balcony" name="balcony" min="0" max="10" step="1" placeholder="1" required />
+        </label>
+      </div>
+
+      <button type="submit" class="submit-btn" id="submit-btn">Get estimate</button>
+    </form>
+
+    <section class="card estimate-card" id="estimate-card" aria-live="polite">
+      <div class="estimate-card__empty" id="estimate-empty">
+        <p>Fill in the form and your estimate will appear here.</p>
+      </div>
+
+      <div class="estimate-card__loading" id="estimate-loading" hidden>
+        <p>Calculating&hellip;</p>
+      </div>
+
+      <div class="estimate-card__result" id="estimate-result" hidden>
+        <p class="estimate-card__label">Estimated price</p>
+        <p class="estimate-card__price" id="estimate-price">&#8377;0</p>
+        <p class="estimate-card__note">
+          Based on a model trained on comparable listings. Treat this as a
+          starting point, not a valuation.
+        </p>
+      </div>
+
+      <div class="estimate-card__error" id="estimate-error" hidden>
+        <p id="estimate-error-message">Something went wrong.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built as a portfolio project. Not affiliated with any real estate service.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
