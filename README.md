@@ -2,7 +2,7 @@
 
 End-to-end ML portfolio project: data cleaning, EDA, model training, FastAPI backend, and a static frontend, deployed live across two services.
 
-**Live demo:** [Frontend](https://huggingface.co/spaces/AbdukganiyMK/house-price-prediction-frontend)
+**Live demo:** [Frontend](https://huggingface.co/spaces/moshood-abdulganiyu/house-price-prediction-frontend)
 **API docs:** [https://house-price-prediction-f449.onrender.com/docs](https://house-price-prediction-f449.onrender.com/docs)
 
 ![App screenshot](screenshots/demo.png)
