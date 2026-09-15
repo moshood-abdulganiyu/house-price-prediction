@@ -20,10 +20,6 @@ COPY . .
 # Final sync to include project root
 RUN uv sync --frozen --no-dev
 
-# Diagnostic: is uvicorn installed anywhere in the venv, and is it importable?
-RUN find /app/.venv -iname '*uvicorn*' | sort
-RUN /app/.venv/bin/python -c "import uvicorn; print(uvicorn.__file__)"
-
 EXPOSE 8000
 
 # Use full path to uvicorn inside virtual environment
