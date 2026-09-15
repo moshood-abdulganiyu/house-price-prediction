@@ -5,22 +5,22 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 WORKDIR /app
 
-# Ensure installed binaries in .venv are available on system PATH
+# Add virtual environment to PATH
 ENV PATH="/app/.venv/bin:$PATH"
 
-# Copy dependency files first
+# Copy dependency definition files
 COPY pyproject.toml uv.lock ./
 
-# Install production dependencies
+# Sync production dependencies
 RUN uv sync --frozen --no-dev --no-install-project
 
-# Copy source code
+# Copy project files
 COPY . .
 
-# Install project root if applicable
+# Final sync to include project root
 RUN uv sync --frozen --no-dev
 
 EXPOSE 8000
 
-# Render sets $PORT at runtime; default to 8000 locally
-CMD ["sh", "-c", "uvicorn server.main:app --host 0.0.0.0 --port ${PORT:-8000}"]
+# Use full path to uvicorn inside virtual environment
+CMD ["sh", "-c", "/app/.venv/bin/uvicorn server.main:app --host 0.0.0.0 --port ${PORT:-8000}"]
