@@ -1,6 +1,5 @@
-// Point this at your local backend while developing, then at the deployed
-// Render URL once step 9 is done.
-const API_URL = "http://localhost:8000";
+
+const API_URL = "https://house-price-prediction-f449.onrender.com/";
 
 const form = document.getElementById("predict-form");
 const submitBtn = document.getElementById("submit-btn");
